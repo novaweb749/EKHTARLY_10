@@ -1,0 +1,344 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101014">
+<title>Ekhterly | اختارلي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+ --bg:#101014;--panel:#19191f;--panel2:#202027;--text:#f7f5f2;
+ --muted:#9998a3;--accent:#c6f36b;--purple:#a78bfa;
+ --border:rgba(255,255,255,.09);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Cairo',sans-serif;min-height:100vh}
+body.en{font-family:'Outfit',sans-serif;direction:ltr}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+a{text-decoration:none;color:inherit}
+header{height:82px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 7%;position:sticky;top:0;background:rgba(16,16,20,.93);backdrop-filter:blur(15px);z-index:10}
+.logo{font-size:25px;font-weight:900;letter-spacing:-1px}
+.logo span{color:var(--accent)}
+.nav{display:flex;gap:27px;align-items:center}
+.nav button{background:none;border:0;color:var(--muted);font-weight:700;font-size:14px}
+.nav button.active,.nav button:hover{color:var(--accent)}
+.header-actions{display:flex;gap:10px;align-items:center}
+.lang,.menu-btn{background:var(--panel2);border:1px solid var(--border);color:white;padding:9px 14px;border-radius:10px}
+.menu-btn{display:none}
+.page{display:none;animation:appear .35s ease}
+.page.active{display:block}
+@keyframes appear{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.container{width:min(1120px,88%);margin:auto}
+.hero{padding:85px 0 70px;display:grid;grid-template-columns:1.05fr .95fr;gap:55px;align-items:center}
+.eyebrow{color:var(--accent);font-size:13px;font-weight:800;letter-spacing:1px;margin-bottom:20px}
+h1{font-size:clamp(42px,6vw,73px);line-height:1.2;font-weight:900;letter-spacing:-2px}
+h1 span{color:var(--accent)}
+.hero p{color:var(--muted);font-size:16px;line-height:2;margin:22px 0 28px;max-width:500px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.primary,.secondary{padding:13px 23px;border-radius:12px;font-weight:800;border:1px solid transparent}
+.primary{background:var(--accent);color:#14170d}
+.primary:hover{background:#d8ff91;transform:translateY(-2px)}
+.secondary{background:var(--panel2);border-color:var(--border);color:white}
+.hero-image{height:460px;position:relative;border-radius:25px;overflow:hidden}
+.hero-image img{width:100%;height:100%;object-fit:cover}
+.image-tag{position:absolute;bottom:22px;right:22px;background:rgba(15,15,20,.85);padding:15px 19px;border-radius:14px;backdrop-filter:blur(10px)}
+body.en .image-tag{right:auto;left:22px}
+.image-tag strong{display:block;color:var(--accent);font-size:13px}
+.image-tag small{color:#ddd}
+.section{padding:65px 0}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:28px}
+.section-head h2{font-size:30px;font-weight:900}
+.section-head p{color:var(--muted);font-size:14px}
+.text-link{color:var(--accent);font-weight:800;background:none;border:0}
+.categories{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.category{height:220px;border-radius:18px;overflow:hidden;position:relative;cursor:pointer}
+.category img{width:100%;height:100%;object-fit:cover;transition:.4s}
+.category:hover img{transform:scale(1.07)}
+.category:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent,rgba(0,0,0,.85))}
+.category h3{position:absolute;bottom:19px;right:19px;z-index:1;font-size:20px}
+body.en .category h3{right:auto;left:19px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:17px;overflow:hidden}
+.card img{width:100%;height:180px;object-fit:cover}
+.card-content{padding:20px}
+.card-content small{color:var(--accent);font-weight:800}
+.card-content h3{font-size:19px;margin:7px 0}
+.card-content p{color:var(--muted);font-size:13px;line-height:1.8}
+.card-content button{margin-top:15px;background:none;border:0;color:var(--accent);font-weight:800}
+.page-title{padding:65px 0 35px}
+.page-title h1{font-size:48px}
+.page-title p{color:var(--muted);margin-top:12px;line-height:1.9}
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:25px}
+.filter{padding:9px 17px;background:var(--panel);border:1px solid var(--border);border-radius:30px;color:var(--muted)}
+.filter.active{background:var(--accent);color:#15180f;border-color:var(--accent)}
+.tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.tool{background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:28px}
+.tool-icon{width:48px;height:48px;border-radius:14px;background:rgba(198,243,107,.12);display:grid;place-items:center;font-size:23px;margin-bottom:18px}
+.tool h3{font-size:22px;margin-bottom:8px}
+.tool p{color:var(--muted);font-size:14px;line-height:1.8;margin-bottom:20px}
+.field{width:100%;background:#111116;border:1px solid var(--border);border-radius:11px;padding:13px;color:white;outline:none;margin-bottom:10px}
+.field:focus{border-color:var(--accent)}
+.result{background:rgba(198,243,107,.1);border:1px solid rgba(198,243,107,.25);padding:16px;border-radius:12px;margin-top:15px;color:var(--accent);font-weight:800;display:none;line-height:1.7}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:center;padding-bottom:70px}
+.about-grid img{width:100%;height:380px;object-fit:cover;border-radius:20px}
+.about-grid p{color:var(--muted);line-height:2;margin:18px 0}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:25px}
+.stat{background:var(--panel);padding:18px;border-radius:13px}
+.stat strong{display:block;color:var(--accent);font-size:23px}
+.stat span{color:var(--muted);font-size:12px}
+footer{border-top:1px solid var(--border);padding:30px 7%;display:flex;justify-content:space-between;gap:15px;color:var(--muted);font-size:13px;flex-wrap:wrap}
+footer span{color:var(--accent)}
+.empty{color:var(--muted);padding:30px;text-align:center;display:none}
+@media(max-width:800px){
+ header{padding:0 5%;height:72px}
+ .menu-btn{display:block}
+ .nav{display:none;position:absolute;top:71px;left:0;right:0;background:#17171d;padding:20px;flex-direction:column;align-items:stretch;border-bottom:1px solid var(--border)}
+ .nav.open{display:flex}
+ .nav button{text-align:center;padding:10px}
+ .hero{grid-template-columns:1fr;padding-top:55px;gap:30px}
+ .hero-image{height:330px}
+ .categories{grid-template-columns:repeat(2,1fr)}
+ .cards{grid-template-columns:1fr 1fr}
+ .about-grid{grid-template-columns:1fr}
+}
+@media(max-width:520px){
+ .cards,.tool-grid{grid-template-columns:1fr}
+ .category{height:165px}
+ .section-head{align-items:start;flex-direction:column}
+ h1{font-size:43px}
+ .page-title h1{font-size:38px}
+ footer{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<header>
+ <a class="logo" href="#" onclick="showPage('home')">Ekhter<span>ly.</span></a>
+ <nav class="nav" id="nav">
+  <button class="active" data-page="home" data-ar="الرئيسية" data-en="Home">الرئيسية</button>
+  <button data-page="discover" data-ar="اكتشف" data-en="Discover">اكتشف</button>
+  <button data-page="tools" data-ar="الأدوات" data-en="Tools">الأدوات</button>
+  <button data-page="about" data-ar="عن الموقع" data-en="About">عن الموقع</button>
+ </nav>
+ <div class="header-actions">
+  <button class="lang" id="langBtn" onclick="toggleLanguage()">EN</button>
+  <button class="menu-btn" onclick="document.getElementById('nav').classList.toggle('open')">☰</button>
+ </div>
+</header>
+
+<main>
+<section class="page active" id="home">
+ <div class="container hero">
+  <div>
+   <div class="eyebrow" data-ar="مساحة أفكارك الجديدة ✦" data-en="YOUR NEXT IDEA STARTS HERE ✦">مساحة أفكارك الجديدة ✦</div>
+   <h1 data-ar="محتار؟<br>خلّي <span>اختارلي</span> يسهّلها." data-en="Can't decide?<br>Let <span>Ekhterly</span> make it easy.">محتار؟<br>خلّي <span>اختارلي</span> يسهّلها.</h1>
+   <p data-ar="من اختيار وجهتك القادمة إلى اكتشاف تجربة جديدة، هنا هتلاقي أفكار تلهمك وأدوات تساعدك تاخد قرارك بثقة." data-en="From choosing your next destination to discovering a new experience, find inspiration and tools that help you decide with confidence.">من اختيار وجهتك القادمة إلى اكتشاف تجربة جديدة، هنا هتلاقي أفكار تلهمك وأدوات تساعدك تاخد قرارك بثقة.</p>
+   <div class="actions">
+    <button class="primary" onclick="showPage('discover')" data-ar="ابدأ الاكتشاف ←" data-en="Start Exploring →">ابدأ الاكتشاف ←</button>
+    <button class="secondary" onclick="showPage('tools')" data-ar="جرّب الأدوات" data-en="Try the tools">جرّب الأدوات</button>
+   </div>
+  </div>
+  <div class="hero-image">
+   <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1000&q=85" alt="Experience">
+   <div class="image-tag"><strong data-ar="كل يوم فرصة جديدة" data-en="Every day is a new chance">كل يوم فرصة جديدة</strong><small data-ar="اكتشف حاجة مختلفة" data-en="Discover something different">اكتشف حاجة مختلفة</small></div>
+  </div>
+ </div>
+ <div class="container section">
+  <div class="section-head"><div><h2 data-ar="ابدأ من هنا" data-en="Explore by category">ابدأ من هنا</h2><p data-ar="اختار المجال اللي نفسك تكتشفه" data-en="Choose what you want to explore">اختار المجال اللي نفسك تكتشفه</p></div><button class="text-link" onclick="showPage('discover')" data-ar="كل التصنيفات ←" data-en="All categories →">كل التصنيفات ←</button></div>
+  <div class="categories">
+   <div class="category" onclick="showPage('discover','travel')"><img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=600&q=80"><h3 data-ar="السفر والمغامرة" data-en="Travel & Adventure">السفر والمغامرة</h3></div>
+   <div class="category" onclick="showPage('discover','food')"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80"><h3 data-ar="الأكل والمطاعم" data-en="Food & Dining">الأكل والمطاعم</h3></div>
+   <div class="category" onclick="showPage('discover','lifestyle')"><img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=600&q=80"><h3 data-ar="أسلوب الحياة" data-en="Lifestyle">أسلوب الحياة</h3></div>
+   <div class="category" onclick="showPage('discover','activities')"><img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=600&q=80"><h3 data-ar="أنشطة وتجارب" data-en="Activities">أنشطة وتجارب</h3></div>
+  </div>
+ </div>
+ <div class="container section">
+  <div class="section-head"><div><h2 data-ar="اختيارات تستحق التجربة" data-en="Worth exploring">اختيارات تستحق التجربة</h2><p data-ar="أفكار ممكن تكون بداية حاجة جميلة" data-en="Ideas that could start something great">أفكار ممكن تكون بداية حاجة جميلة</p></div></div>
+  <div class="cards">
+   <article class="card"><img src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=600&q=80"><div class="card-content"><small data-ar="سفر" data-en="TRAVEL">سفر</small><h3 data-ar="غيّر المكان، غيّر المود" data-en="Change the place, change the mood">غيّر المكان، غيّر المود</h3><p data-ar="اكتشف أماكن جديدة واخرج من روتينك." data-en="Discover new places and break your routine.">اكتشف أماكن جديدة واخرج من روتينك.</p><button onclick="showPage('discover','travel')" data-ar="اكتشف المزيد ←" data-en="Explore →">اكتشف المزيد ←</button></div></article>
+   <article class="card"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80"><div class="card-content"><small data-ar="طعام" data-en="FOOD">طعام</small><h3 data-ar="جرّب طعم جديد" data-en="Try a new taste">جرّب طعم جديد</h3><p data-ar="أفكار لأكلات وتجارب مختلفة." data-en="Ideas for different food experiences.">أفكار لأكلات وتجارب مختلفة.</p><button onclick="showPage('discover','food')" data-ar="اكتشف المزيد ←" data-en="Explore →">اكتشف المزيد ←</button></div></article>
+   <article class="card"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80"><div class="card-content"><small data-ar="تجارب" data-en="EXPERIENCES">تجارب</small><h3 data-ar="اصنع ذكرى مختلفة" data-en="Make a different memory">اصنع ذكرى مختلفة</h3><p data-ar="أفكار بسيطة تخلي يومك مميز." data-en="Simple ideas to make your day special.">أفكار بسيطة تخلي يومك مميز.</p><button onclick="showPage('discover','activities')" data-ar="اكتشف المزيد ←" data-en="Explore →">اكتشف المزيد ←</button></div></article>
+  </div>
+ </div>
+</section>
+
+<section class="page" id="discover">
+ <div class="container">
+  <div class="page-title"><div class="eyebrow" data-ar="مساحة الإلهام ✦" data-en="INSPIRATION SPACE ✦">مساحة الإلهام ✦</div><h1 data-ar="اكتشف حاجة <span>جديدة.</span>" data-en="Discover something <span>new.</span>">اكتشف حاجة <span>جديدة.</span></h1><p data-ar="مجموعة أفكار وتجارب تساعدك تخرج من المعتاد." data-en="Ideas and experiences to help you break out of the ordinary.">مجموعة أفكار وتجارب تساعدك تخرج من المعتاد.</p></div>
+  <div class="filters">
+   <button class="filter active" data-filter="all" data-ar="الكل" data-en="All">الكل</button>
+   <button class="filter" data-filter="travel" data-ar="السفر" data-en="Travel">السفر</button>
+   <button class="filter" data-filter="food" data-ar="الأكل" data-en="Food">الأكل</button>
+   <button class="filter" data-filter="lifestyle" data-ar="أسلوب الحياة" data-en="Lifestyle">أسلوب الحياة</button>
+   <button class="filter" data-filter="activities" data-ar="أنشطة" data-en="Activities">أنشطة</button>
+  </div>
+  <div class="cards" id="discoverCards">
+   <article class="card" data-category="travel"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80"><div class="card-content"><small data-ar="السفر" data-en="TRAVEL">السفر</small><h3 data-ar="رحلة وسط الطبيعة" data-en="A nature escape">رحلة وسط الطبيعة</h3><p data-ar="اقضي يوم وسط مناظر طبيعية وهدوء بعيد عن الزحمة." data-en="Spend a day surrounded by nature and calm.">اقضي يوم وسط مناظر طبيعية وهدوء بعيد عن الزحمة.</p></div></article>
+   <article class="card" data-category="food"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80"><div class="card-content"><small data-ar="الأكل" data-en="FOOD">الأكل</small><h3 data-ar="ليلة تجربة مطاعم" data-en="A food discovery night">ليلة تجربة مطاعم</h3><p data-ar="اختار مطبخ جديد وجرب أكلة عمرك ما جربتها." data-en="Pick a new cuisine and try something different.">اختار مطبخ جديد وجرب أكلة عمرك ما جربتها.</p></div></article>
+   <article class="card" data-category="lifestyle"><img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=600&q=80"><div class="card-content"><small data-ar="أسلوب الحياة" data-en="LIFESTYLE">أسلوب الحياة</small><h3 data-ar="رتّب مساحتك" data-en="Refresh your space">رتّب مساحتك</h3><p data-ar="غيّر ترتيب غرفتك وأضف لمسات بسيطة." data-en="Refresh your room with a few simple changes.">غيّر ترتيب غرفتك وأضف لمسات بسيطة.</p></div></article>
+   <article class="card" data-category="activities"><img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=600&q=80"><div class="card-content"><small data-ar="أنشطة" data-en="ACTIVITIES">أنشطة</small><h3 data-ar="ابدأ رياضة جديدة" data-en="Start a new sport">ابدأ رياضة جديدة</h3><p data-ar="اختار نشاط ممتع يناسب وقتك واهتماماتك." data-en="Find an activity that fits your interests.">اختار نشاط ممتع يناسب وقتك واهتماماتك.</p></div></article>
+   <article class="card" data-category="travel"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80"><div class="card-content"><small data-ar="السفر" data-en="TRAVEL">السفر</small><h3 data-ar="يوم في الجبال" data-en="A day in the mountains">يوم في الجبال</h3><p data-ar="استمتع بالمناظر والهواء الطلق." data-en="Enjoy the views and fresh air.">استمتع بالمناظر والهواء الطلق.</p></div></article>
+   <article class="card" data-category="food"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80"><div class="card-content"><small data-ar="الأكل" data-en="FOOD">الأكل</small><h3 data-ar="اتعلم وصفة جديدة" data-en="Learn a new recipe">اتعلم وصفة جديدة</h3><p data-ar="اختار وصفة سهلة وجرّب تعملها بنفسك." data-en="Choose an easy recipe and make it yourself.">اختار وصفة سهلة وجرّب تعملها بنفسك.</p></div></article>
+  </div>
+  <div class="empty" id="empty">مفيش نتائج في التصنيف ده.</div>
+ </div>
+</section>
+
+<section class="page" id="tools">
+ <div class="container">
+  <div class="page-title"><div class="eyebrow" data-ar="خلي القرار أسهل ✦" data-en="MAKE DECISIONS EASIER ✦">خلي القرار أسهل ✦</div><h1 data-ar="أدوات <span>اختارلي.</span>" data-en="Ekhterly <span>Tools.</span>">أدوات <span>اختارلي.</span></h1><p data-ar="أدوات بسيطة تساعدك تفكر وتختار من غير حيرة." data-en="Simple tools to help you think and decide without the stress.">أدوات بسيطة تساعدك تفكر وتختار من غير حيرة.</p></div>
+  <div class="tool-grid">
+   <div class="tool">
+    <div class="tool-icon">🎲</div><h3 data-ar="اختارلي عشوائي" data-en="Random picker">اختارلي عشوائي</h3>
+    <p data-ar="اكتب اختياراتك وسيب القرار للصدفة." data-en="Enter your options and let chance decide.">اكتب اختياراتك وسيب القرار للصدفة.</p>
+    <textarea class="field" id="options" rows="4" placeholder="مثال: بيتزا&#10;برجر&#10;فراخ"></textarea>
+    <button class="primary" onclick="pickRandom()" data-ar="اختارلي!" data-en="Pick for me!">اختارلي!</button>
+    <div class="result" id="pickResult"></div>
+   </div>
+   <div class="tool">
+    <div class="tool-icon">⚖️</div><h3 data-ar="قارن بين اختيارين" data-en="Compare two options">قارن بين اختيارين</h3>
+    <p data-ar="محتار بين حاجتين؟ اكتبهم وشوف مقارنة سريعة." data-en="Can't choose between two things? Compare them.">محتار بين حاجتين؟ اكتبهم وشوف مقارنة سريعة.</p>
+    <input class="field" id="optionA" placeholder="الاختيار الأول">
+    <input class="field" id="optionB" placeholder="الاختيار الثاني">
+    <button class="primary" onclick="compareOptions()" data-ar="اعرض المقارنة" data-en="Compare">اعرض المقارنة</button>
+    <div class="result" id="compareResult"></div>
+   </div>
+   <div class="tool">
+    <div class="tool-icon">💡</div><h3 data-ar="فكرة اليوم" data-en="Idea of the day">فكرة اليوم</h3>
+    <p data-ar="ممكن تكون محتاج فكرة واحدة بس تبدأ بيها." data-en="Sometimes all you need is one idea to get started.">ممكن تكون محتاج فكرة واحدة بس تبدأ بيها.</p>
+    <button class="primary" onclick="newIdea()" data-ar="هات فكرة" data-en="Give me an idea">هات فكرة</button>
+    <div class="result" id="ideaResult"></div>
+   </div>
+   <div class="tool">
+    <div class="tool-icon">🧠</div><h3 data-ar="سؤال يساعدك تقرر" data-en="A question to help you decide">سؤال يساعدك تقرر</h3>
+    <p data-ar="اسأل نفسك سؤال مختلف قبل ما تاخد قرارك." data-en="Ask yourself a different question before deciding.">اسأل نفسك سؤال مختلف قبل ما تاخد قرارك.</p>
+    <button class="primary" onclick="newQuestion()" data-ar="سؤال جديد" data-en="New question">سؤال جديد</button>
+    <div class="result" id="questionResult"></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="page" id="about">
+ <div class="container">
+  <div class="page-title"><div class="eyebrow" data-ar="قصتنا ✦" data-en="OUR STORY ✦">قصتنا ✦</div><h1 data-ar="كل اختيار بداية <span>لحكاية.</span>" data-en="Every choice starts a <span>story.</span>">كل اختيار بداية <span>لحكاية.</span></h1></div>
+  <div class="about-grid">
+   <div><h2 data-ar="ليه اختارلي؟" data-en="Why Ekhterly?">ليه اختارلي؟</h2><p data-ar="اختارلي مساحة رقمية اتعملت علشان تخلي لحظات الحيرة أسهل. ساعات بنكون محتاجين إلهام، وساعات بنحتاج أداة بسيطة تساعدنا نقارن ونختار." data-en="Ekhterly is a digital space designed to make moments of indecision easier. Sometimes we need inspiration, and sometimes we need a simple tool to compare and choose.">اختارلي مساحة رقمية اتعملت علشان تخلي لحظات الحيرة أسهل. ساعات بنكون محتاجين إلهام، وساعات بنحتاج أداة بسيطة تساعدنا نقارن ونختار.</p>
+   <p data-ar="هدفنا إنك تكتشف أفكار جديدة وتاخد قراراتك بشكل أبسط، من غير تعقيد." data-en="Our goal is to help you discover new ideas and make decisions more easily.">هدفنا إنك تكتشف أفكار جديدة وتاخد قراراتك بشكل أبسط، من غير تعقيد.</p>
+   <div class="stats"><div class="stat"><strong>01</strong><span data-ar="اكتشف" data-en="Discover">اكتشف</span></div><div class="stat"><strong>02</strong><span data-ar="قارن" data-en="Compare">قارن</span></div><div class="stat"><strong>03</strong><span data-ar="اختار" data-en="Choose">اختار</span></div></div></div>
+   <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=85" alt="Creative workspace">
+  </div>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="logo">Ekhter<span>ly.</span></div>
+ <div data-ar="مساحة أفكارك وقراراتك." data-en="A space for your ideas and decisions.">مساحة أفكارك وقراراتك.</div>
+ <div>© 2026 Ekhterly. <span data-ar="جميع الحقوق محفوظة." data-en="All rights reserved.">جميع الحقوق محفوظة.</span></div>
+</footer>
+
+<script>
+let language='ar';
+
+function showPage(name,filter){
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ const target=document.getElementById(name);
+ if(!target)return;
+ target.classList.add('active');
+ document.querySelectorAll('.nav button').forEach(b=>{
+  b.classList.toggle('active',b.dataset.page===name);
+ });
+ document.getElementById('nav').classList.remove('open');
+ window.scrollTo({top:0,behavior:'smooth'});
+ if(name==='discover' && filter) applyFilter(filter);
+}
+
+function toggleLanguage(){
+ language=language==='ar'?'en':'ar';
+ document.documentElement.lang=language;
+ document.documentElement.dir=language==='ar'?'rtl':'ltr';
+ document.body.classList.toggle('en',language==='en');
+ document.getElementById('langBtn').textContent=language==='ar'?'EN':'عربي';
+ document.querySelectorAll('[data-ar][data-en]').forEach(el=>{
+  el.innerHTML=el.dataset[language];
+ });
+ document.querySelectorAll('.nav button').forEach(b=>{
+  b.textContent=b.dataset[language];
+ });
+ document.querySelectorAll('.filter').forEach(b=>{
+  b.textContent=b.dataset[language];
+ });
+ document.getElementById('options').placeholder=language==='ar'?'مثال: بيتزا\\nبرجر\\nفراخ':'Example: Pizza\\nBurger\\nChicken';
+ document.getElementById('optionA').placeholder=language==='ar'?'الاختيار الأول':'First option';
+ document.getElementById('optionB').placeholder=language==='ar'?'الاختيار الثاني':'Second option';
+}
+
+function pickRandom(){
+ const values=document.getElementById('options').value.split('\\n').map(x=>x.trim()).filter(Boolean);
+ const result=document.getElementById('pickResult');
+ result.style.display='block';
+ if(values.length<2){
+  result.textContent=language==='ar'?'اكتب اختيارين على الأقل.':'Enter at least two options.';
+  return;
+ }
+ const choice=values[Math.floor(Math.random()*values.length)];
+ result.textContent=(language==='ar'?'اختيارك هو: ':'Your choice is: ')+choice+' ✨';
+}
+
+function compareOptions(){
+ const a=document.getElementById('optionA').value.trim();
+ const b=document.getElementById('optionB').value.trim();
+ const result=document.getElementById('compareResult');
+ result.style.display='block';
+ if(!a||!b){
+  result.textContent=language==='ar'?'اكتب الاختيارين الأول.':'Enter both options first.';
+  return;
+ }
+ result.textContent=language==='ar'
+ ?'الاختيار الأول: '+a+'  |  الاختيار الثاني: '+b+' — فكر في السعر والجودة واحتياجك قبل القرار.'
+ :'Option 1: '+a+' | Option 2: '+b+' — Consider price, quality and your needs before deciding.';
+}
+
+const ideasAr=['اتعلم مهارة جديدة لمدة 20 دقيقة.','جرّب وصفة مختلفة.','اخرج في نزهة واكتشف مكان جديد.','اقرأ عن موضوع عمرك ما اهتميت بيه.','رتّب مساحة صغيرة في غرفتك.'];
+const ideasEn=['Learn a new skill for 20 minutes.','Try a different recipe.','Go for a walk and explore a new place.','Read about a topic you never explored.','Refresh a small corner of your room.'];
+const questionsAr=['هل الاختيار ده هيكون مفيد بعد شهر؟','إيه أهم حاجة بالنسبالك في القرار ده؟','هل بتختار علشان أنت عايز ولا علشان الناس؟','إيه أسوأ حاجة ممكن تحصل لو اخترت؟','أنهي اختيار أقرب لهدفك؟'];
+const questionsEn=['Will this choice still matter in a month?','What matters most to you in this decision?','Are you choosing for yourself or for others?','What is the realistic downside of this choice?','Which option is closer to your goal?'];
+
+function newIdea(){
+ const arr=language==='ar'?ideasAr:ideasEn;
+ showResult('ideaResult',arr[Math.floor(Math.random()*arr.length)]);
+}
+function newQuestion(){
+ const arr=language==='ar'?questionsAr:questionsEn;
+ showResult('questionResult',arr[Math.floor(Math.random()*arr.length)]);
+}
+function showResult(id,text){
+ const el=document.getElementById(id);
+ el.textContent=text;
+ el.style.display='block';
+}
+
+function applyFilter(category){
+ document.querySelectorAll('.filter').forEach(b=>b.classList.toggle('active',b.dataset.filter===category));
+ let count=0;
+ document.querySelectorAll('#discoverCards .card').forEach(card=>{
+  const visible=category==='all'||card.dataset.category===category;
+  card.style.display=visible?'block':'none';
+  if(visible)count++;
+ });
+ document.getElementById('empty').style.display=count?'none':'block';
+}
+document.querySelectorAll('.nav button').forEach(button=>{
+ button.addEventListener('click',()=>showPage(button.dataset.page));
+});
+document.querySelectorAll('.filter').forEach(button=>{
+ button.addEventListener('click',()=>applyFilter(button.dataset.filter));
+});
+</script>
+</body>
+</html>
